@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase-url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase-anon-key",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@stripe-publishable-key",
+    "NEXT_PUBLIC_APP_URL": "https://pixora.vercel.app"
+  },
+  "build": {
+    "env": {
+      "SUPABASE_SERVICE_ROLE_KEY": "@supabase-service-role-key",
+      "STRIPE_SECRET_KEY": "@stripe-secret-key",
+      "ANTHROPIC_API_KEY": "@anthropic-api-key",
+      "REPLICATE_API_TOKEN": "@replicate-api-token",
+      "ELEVEN_LABS_API_KEY": "@elevenlabs-api-key"
+    }
+  }
+}
