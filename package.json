@@ -1,0 +1,70 @@
+{
+  "name": "pixora",
+  "version": "1.0.0",
+  "description": "AI-Powered Marketing Asset Creation Platform with Collaborative Whiteboard",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend",
+    "y-websocket-server",
+    "ai-service"
+  ],
+  "scripts": {
+    "install": "npm install --workspaces",
+    "dev": "docker-compose up -d && npm run dev:backend & npm run dev:frontend & npm run dev:ws & npm run dev:ai",
+    "dev:backend": "cd backend && npm run start:dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:ws": "cd y-websocket-server && npm run dev",
+    "dev:ai": "cd ai-service && npm run dev",
+    "build": "npm run build --workspaces",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "npm run test --workspaces",
+    "test:e2e": "cd frontend && npm run test:e2e",
+    "lint": "npm run lint --workspaces",
+    "lint:fix": "npm run lint:fix --workspaces",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md,yml,yaml}\"",
+    "typecheck": "npm run typecheck --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf node_modules",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "migrate": "cd backend && npm run migration:run",
+    "migrate:create": "cd backend && npm run migration:create",
+    "migrate:revert": "cd backend && npm run migration:revert",
+    "seed": "cd backend && npm run seed",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "saas",
+    "ai",
+    "whiteboard",
+    "collaboration",
+    "marketing",
+    "design"
+  ],
+  "author": "Pixora Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}
